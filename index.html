@@ -57,5 +57,61 @@
                         <td>$70</td>
                 </tr>
         </table>
+        <hr>
+        <h1>Code Display</h1>
+        <p><b>LINC was originally developed as a short-cut (or template) by two programmers to reproduce and automate the production of computer applications for different companies, that had similar requirements and specifications. The requirements were similar, because the companies followed a common, generic, business model.
+
+                That is, these businesses dealt with "commodities", or "parts", or "suppliers", or "customers" (named "components" in LINC terminology). These were "manufactured", or "assembled", or "purchased", or "sold" (actions termed "events" in LINC terminology).</b></p>
+           <a href="https://en.wikipedia.org/wiki/LINC_4GL"></a>   
+           <pre>
+                begin
+                — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+                — This is lexical level 2 (level zero is reserved for the operating system and level 1 for code segments).
+                — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+                
+                — At level 2 we place global variables for our program.
+                
+                integer i, j, k;
+                real f, g;
+                array a [0:9];
+                
+                procedure p (real p1, p2);
+                   value p1;     — p1 passed by value, p2 implicitly passed by reference.
+                   begin
+                      — — — — — — — — — — — — — — — — — —
+                      — This block is at lexical level 3
+                      — — — — — — — — — — — — — — — — — —
+                      real r1, r2;
+             
+                      r2 := p1 * 5;
+                      p2 := r2;  — This sets g to the value of r2
+                      p1 := r2;  — This sets p1 to r2, but not f
+                      — Since this overwrites the original value of f in p1 it might be a
+                      — coding mistake.  Some few of ALGOL's successors therefore insist that
+                      — value parameters be read only – but most do not.
+                      
+                      if r2 > 10 then
+                         begin
+                            — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+                            — A variable declared here makes this lexical level 4
+                            — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+                            integer n;
+             
+                            — The declaration of a variable makes this a block, which will invoke some
+                            — stack building code. Normally you won't declare variables here, in which
+                            — case this would be a compound statement, not a block.
+                            
+                            ... <== sample stack is executing somewhere here.
+                         end;
+                   end;
+                   
+                .....
+                
+                p (f, g);
+                end.
+           </pre>
+           <a href =" https://en.wikipedia.org/wiki/Burroughs_large_systems"></a>
+
+
 </body>
 </html>
